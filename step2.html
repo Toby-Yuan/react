@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <!-- 以下引入 react.js, react-dom.js（react 0.14 後將 react-dom 從 react 核心分離，更符合 react 跨平台抽象化的定位）以及 babel-core browser 版 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <div id="app1"></div>
+
+    <div id="app2"></div>
+
+    <!-- 以下就是包在 babel（透過進行語言翻譯）中的 React JSX 語法，babel 會將其轉為瀏覽器看的懂得 JavaScript -->
+    <script type="text/babel">
+        // 使用 arrow function 來設計 Functional Component 讓 UI 設計更單純（f(D) => UI），減少副作用（side effect）
+        const MyComponent = () => (
+            <div>Hello, World!</div>
+        );
+
+        // 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
+        ReactDOM.render(<MyComponent/>, document.getElementById('app'));
+
+        //  注意元件開頭第一個字母都要大寫
+        class MyComponent1 extends React.Component {
+            // render 是 Class based 元件唯一必須的方法（method）
+            render() {
+                return (
+                    <div>Hello, World!</div>
+                );
+            }
+        }
+
+        // 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
+        ReactDOM.render(<MyComponent1/>, document.getElementById('app1'));
+
+        const divStyle = {
+            color: 'red',
+            background: 'black'
+        }
+
+        ReactDOM.render(<div style={divStyle}>Hello World!</div>, document.getElementById('app2'));
+    </script>
+  </body>
+</html>

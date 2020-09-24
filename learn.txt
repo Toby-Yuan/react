@@ -7,6 +7,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
 ```
 
+## 引入javascript檔案
+### html
+```html
+<script type="text/jsx" src="main.jsx"></script>
+```
+
 ## first react
 ### html
 ```html
@@ -20,4 +26,60 @@ ReactDOM.render(
     <h1>Hello, world!</h1>,
     document.getElementById('example')
 );
+```
+
+# React and Component
+## Component 元件化: 在使用React的過程中要把網頁視為元件組成, 元件名稱都要以大寫為字首
+### html
+```html
+<div id="app"></div>
+```
+
+### js
+```javascript
+// 使用 arrow function 來設計 Functional Component 讓 UI 設計更單純（f(D) => UI），減少副作用（side effect）
+const MyComponent = () => (
+    <div>Hello, World!</div>
+);
+
+// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
+ReactDOM.render(<MyComponent/>, document.getElementById('app'));
+```
+
+## 也可以用class的寫法
+### html
+```html
+<div id="app1"></div>
+```
+
+### js
+```javascript
+//  注意元件開頭第一個字母都要大寫
+class MyComponent1 extends React.Component {
+    // render 是 Class based 元件唯一必須的方法（method）
+    render() {
+        return (
+            <div>Hello, World!</div>
+        );
+    }
+}
+
+// 將 <MyComponent /> 元件插入 id 為 app 的 DOM 元素中
+ReactDOM.render(<MyComponent1/>, document.getElementById('app1'));
+```
+
+## 加入CSS屬性
+### html
+```html
+<div id="app2"></div>
+```
+
+### js
+```javascript
+const divStyle = {
+    color: 'red',
+    background: 'black'
+}
+
+ReactDOM.render(<div style={divStyle}>Hello World!</div>, document.getElementById('app2'));
 ```
