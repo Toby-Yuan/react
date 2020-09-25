@@ -11,12 +11,62 @@
   <body>
     <!-- 這邊的 id="example" 的 <div> 為 React Component 要插入的地方 -->
     <div id="example"></div>
+
+    <div id="app"></div>
+
+    <div id="app1"></div>
+
+    <div id="app2"></div>
+
+    <div id="app3"></div>
+
+    <div id="app4"></div>
+
     <!-- 以下就是包在 babel（透過進行語言翻譯）中的 React JSX 語法，babel 會將其轉為瀏覽器看的懂得 JavaScript -->
     <script type="text/babel">
       ReactDOM.render(
         <h1>Hello, world!</h1>,
         document.getElementById('example')
       );
+
+      const name = 'John';
+      const element = <h1>Hello, {name}</h1>;
+      ReactDOM.render(element, document.getElementById('app'));
+
+      function format(user) {
+        return user.firstName + ' ' + user.lastName;
+      }
+      const user1 = {firstName: 'Harry', lastName: 'Poter'};
+      const element1 = <h1>Hello, {format(user1)}</h1>;
+      ReactDOM.render(element1, document.getElementById('app1'));
+
+      function get(user) {
+        if(user){
+          return format(user);
+        }
+        return 'user';
+      }
+      const user2 = {firstName: 'Harry', lastName: 'Poter'};
+      const element2 = <h1>Hello, {get()}</h1>; // get(user2) <--> get()
+      ReactDOM.render(element2, document.getElementById('app2'));
+
+      const element3 = (
+        <div>
+          <h1>Hello</h1>
+          <h2>Good</h2>
+        </div>
+      );
+      ReactDOM.render(element3, document.getElementById('app3'));
+
+      function timeRe() {
+        const element4 = (
+          <div>
+            <h1>It is {new Date().toLocaleTimeString()}</h1>
+          </div>
+        );
+        ReactDOM.render(element4, document.getElementById('app4'));
+      }
+      setInterval(timeRe, 1000);
     </script>
   </body>
 </html>
