@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    
+    <script type="text/babel">
+        function Clock(props) {
+            return(
+                <div>
+                    <h1>Hello</h1>
+                    <h2>It's {props.data.toLocaleTimeString()}</h2>
+                </div>
+            );
+        }
+        function tick() {
+            ReactDOM.render(<Clock data={new Date()}/>, document.getElementById('app'));
+        }
+        setInterval(tick, 1000);
+    </script>
+</body>
+</html>
