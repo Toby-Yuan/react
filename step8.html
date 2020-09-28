@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <div id="app1"></div>
+
+    <script type="text/babel">
+        function Boiling(props) {
+            if (props.celsius >= 100){
+                return <p>The water would boil</p>
+            }
+            return <p>The water would not boil</p>
+        }
+        class Calculator extends React.Component {
+            constructor(props) {
+                super(props);
+                this.handleChange = this.handleChange.bind(this);
+                this.state = {template: ''};
+            }
+
+            handleChange(e) {
+                this.setState({template: e.target.value});
+            }
+
+            render() {
+                const template = this.state.template;
+                return (
+                    <fieldset>
+                        <legend>Enter in Celisius</legend>
+                        <input value={template} onChange={this.handleChange}/>
+                        <Boiling celsius={parseFloat(template)}/>
+                    </fieldset>
+                )
+            }
+        }
+        ReactDOM.render(<Calculator/>, document.getElementById('app'))
+
+        const scaleName = {
+            c: 'Celsius',
+            f: 'Fahrenheit'
+        }
+        class TemplateInput1 extends React.Component {
+            constructor(props) {
+                super(props);
+                this.handleChange = this.handleChange.bind(this);
+                this.state = {template: ''};
+            }
+
+            handleChange(e) {
+                this.setState({template: e.target.value});
+            }
+
+            render() {
+                const template = this.state.template;
+                const scale = this.props.scale;
+                return (
+                    <fieldset>
+                        <legend>Enter in {scaleName[scale]}</legend>
+                        <input value={template} onChange={this.handleChange}/>
+                        <Boiling celsius={parseFloat(template)}/>
+                    </fieldset>
+                )
+            }
+        }
+        class Calculator1 extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <TemplateInput1 scale='c'/>
+                        <TemplateInput1 scale='f'/>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Calculator1/>, document.getElementById('app1'))
+    </script>
+</body>
+</html>
