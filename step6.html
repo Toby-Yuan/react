@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.18.1/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <div id="app1"></div>
+
+    <div id="app2"></div>
+
+    <div id="app3"></div>
+
+    <div id="app4"></div>
+
+    <script type="text/babel">
+        const numbers = [1, 2, 3, 4, 5];
+        const list = numbers.map((number) => <li>{number}</li>)
+        ReactDOM.render(
+            <ul>{list}</ul>,
+            document.getElementById('app')
+        )
+
+        function NumberList1(props) {
+            const numbers = props.numbers;
+            const list = numbers.map((number) => <li>{number}</li>);
+            return <ul>{list}</ul>;
+        }
+        const numbers1 = [1, 2, 3, 4, 5];
+        ReactDOM.render(<NumberList1 numbers={numbers1} />, document.getElementById('app1'));
+
+        function NumberList2(props) {
+            const numbers = props.numbers;
+            const list = numbers.map((number) => <li key={number.toString()}>{number}</li>);
+            return <ul>{list}</ul>;
+        }
+        const numbers2 = [1, 2, 3, 4, 5];
+        ReactDOM.render(<NumberList2 numbers={numbers2} />, document.getElementById('app2'));
+
+        function Blog(props) {
+            const sidebar = (
+                <ul>
+                    {props.posts.map((post) =>
+                        <li>{post.title}</li>
+                    )}
+                </ul>
+            )
+
+            const content = props.posts.map((post) =>
+                <div key={post.id}>
+                    <h3>{post.title}</h3>
+                    <p>{post.content}</p>
+                </div>
+            );
+
+            return(
+                <div>
+                    {sidebar}
+                    <hr />
+                    {content}
+                </div>
+            )
+        }
+        const posts = [
+            {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
+            {id: 2, title: 'Installation', content: 'You can install React from npm.'}
+        ];
+        ReactDOM.render(
+            <Blog posts={posts} />,
+            document.getElementById('app3')
+        )
+
+        function List4(props){
+            return <li>{props.value}</li>
+        }
+        function NumberList4(props){
+            const numbers = props.numbers;
+            return(
+                <ul>
+                    {numbers.map((number) => 
+                        <List4 key={number.toString()} value={number} />
+                    )}
+                </ul>
+            )
+        }
+        const numbers4 = [1, 2, 3, 4, 5];
+        ReactDOM.render(<NumberList4 numbers={numbers2} />, document.getElementById('app4'));
+    </script>
+</body>
+</html>
